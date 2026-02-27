@@ -1,12 +1,17 @@
-on: 
+name: Secuential execution
+
+on:
   workflow_dispatch:
+    
 jobs:
-  hello_world_job:
-    runs-on: [ self-hosted, Linux, X64, WebBeds, kubernetes, cicd ]
-    name: A job to say hello
+  greeting_job:
+    runs-on: Linux
     steps:
-      - uses: actions/checkout@v5
-        
-      - uses: Webbeds/onboarding/greet-composite@main
-        with:
-          who_to_greet: 'Mona the Octocat'
+    - name: Hello world
+      run: echo Hello, world!
+  sequential_job:
+      runs-on: Linux
+      needs: [greeting_job]
+      steps:
+      - name: Greeting secuential job
+        run: echo right after greeting!
