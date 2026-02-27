@@ -1,0 +1,12 @@
+on: 
+  workflow_dispatch:
+jobs:
+  hello_world_job:
+    runs-on: [ self-hosted, Linux, X64, WebBeds, kubernetes, cicd ]
+    name: A job to say hello
+    steps:
+      - uses: actions/checkout@v5
+        
+      - uses: Webbeds/onboarding/greet-composite@main
+        with:
+          who_to_greet: 'Mona the Octocat'
